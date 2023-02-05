@@ -7,11 +7,19 @@
 			#calculator div {
 				display:flex
 			}
+			.inputWrapper{
+				padding: 10px;
+				padding-left: 75px;	
+			}
+			.highlight{
+				background : yellow;
+			}
 		</style>
 		<script type = "text/javascript" src = "jquery-3.5.1.min.js"></script>
 		
 		<script type = "text/javascript">	
-			calculation = function(event){
+			var AisActive = true;
+			var calculation = function(event){
 				var inputA = $("#inputA").val();
 				var inputB = $("#inputB").val();
 				var buttonID = event.target.id;
@@ -39,8 +47,29 @@
 				$("#minus").click(calculation);
 				$("#times").click(calculation);
 				$("#divide").click(calculation);
+				$("#calculator #numbers button").click(enterNumber);
+				$("#boxA").click(activateBox);
+				$("#boxB").click(activateBox);
 			});
 		
+			var activateBox = function(event){
+				var ID = event.target.id;
+				console.log(ID);
+				if(ID == "boxA" || ID == "inputA"){
+					$("#boxA").addClass("highlight");
+					$("#boxB").removeClass("highlight");
+					AisActive = true;
+				}else{
+					$("#boxB").addClass("highlight");
+					$("#boxA").removeClass("highlight");
+					AisActive = false;
+				}
+			}
+			
+			var enterNumber = function(event){
+					
+			
+			}
 		
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -48,9 +77,26 @@
 	</head>
 	<body>
 		<form ID = "calculator">
+			<div ID = "numbers">
+				<button>0</button>
+				<button>1</button>
+				<button>2</button>
+				<button>3</button>
+				<button>4</button>
+				<button>5</button>
+				<button>6</button>
+				<button>7</button>
+				<button>8</button>
+				<button>9</button>
+			</div>
 			<div >
-				<input type = "number" ID = "inputA"></input>
-				<input type = "number" ID = "inputB"></input>
+				<div ID = "boxA" class = "inputWrapper">
+					<input type = "number" ID = "inputA"></input>
+				</div>
+				<div ID = "boxB" class = "inputWrapper">
+					<input type = "number" ID = "inputB"></input>
+				</div>
+				
 				<span>=</span>
 				<span ID = "result"></span>
 			</div>

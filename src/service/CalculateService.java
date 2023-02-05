@@ -8,7 +8,7 @@ import model.Calculation;
 import model.User;
 
 public class CalculateService extends Service{
-	public void addCalculation(Calculation c) throws SQLException{
+	public static void addCalculation(Calculation c) throws SQLException{
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
 		String sql = "insert into calculations('input1','input2','operator','result','notes','sequence','userid')values(" + c.getInput1() + "," + c.getInput2()
@@ -17,7 +17,7 @@ public class CalculateService extends Service{
 		
 		
 	}
-	public int getsequence(User user) throws SQLException{
+	public static int getSequence(User user) throws SQLException{
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select max(sequence) +1 from calculation where userID = '" + user.getUserName() + "'";

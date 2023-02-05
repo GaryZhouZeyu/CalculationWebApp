@@ -31,11 +31,13 @@ public class CalculateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		User user = (User)session.getAttribute("user");
 		String param1 = request.getParameter("p1");
 		String param2 = request.getParameter("p2");
 		String operator = request.getParameter("operator");
 		if(operator.equals("plus")) {
-			double sum = CalculateService.sum(param1, param2);
+			double sum = CalculateService.sum(param1, param2, user);
 			String sumStr = String.valueOf(sum);		
 			response.getWriter().append(sumStr);
 		}else if(operator.equals("minus")) {
