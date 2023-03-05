@@ -36,20 +36,20 @@ public class CalculateServlet extends HttpServlet {
 		String param1 = request.getParameter("p1");
 		String param2 = request.getParameter("p2");
 		String operator = request.getParameter("operator");
-		if(operator.equals("plus")) {
+		if(operator.equals("+")) {
 			double sum = CalculateService.sum(param1, param2, user);
 			String sumStr = String.valueOf(sum);		
 			response.getWriter().append(sumStr);
-		}else if(operator.equals("minus")) {
-			double difference = CalculateService.difference(param1, param2);
+		}else if(operator.equals("-")) {
+			double difference = CalculateService.difference(param1, param2, user);
 			String diffStr = String.valueOf(difference);		
 			response.getWriter().append(diffStr);
-		}else if(operator.equals("times")) {
-			double product = CalculateService.product(param1, param2);
+		}else if(operator.equals("*")) {
+			double product = CalculateService.product(param1, param2, user);
 			String prodStr = String.valueOf(product);		
 			response.getWriter().append(prodStr);
-		}else if(operator.equals("divide")) {
-			double dividend = CalculateService.dividend(param1, param2);
+		}else if(operator.equals("/")) {
+			double dividend = CalculateService.dividend(param1, param2, user);
 			String divStr = String.valueOf(dividend);		
 			response.getWriter().append(divStr);
 		}else {
